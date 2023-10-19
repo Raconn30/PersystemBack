@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CNg/1ttKeWJEQucI92S713btn6w5avLcTpdkTgGirm38aaNKNvWjgEDF1E4hepuPB8ovU6RWNwSNt2MxNKuShw==",
+  "dgSpecHash": "4ZwgXCSFL0d5q8ykiA7JZkfTerYE0UOVU9ImgXWiS24T4ibjBiaPu1x/67SJXccZkJqQ16xdBzGYgInOlIfVrA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Asus\\source\\repos\\Clones\\Clones de verdad\\PersystemBack3.0\\PersystemBack2.0\\PersystemBack2.0.csproj",
+  "projectFilePath": "C:\\Users\\Asus\\source\\repos\\Clones\\Clones de verdad\\PersystemBack\\PersystemBack2.0\\PersystemBack2.0.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Asus\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

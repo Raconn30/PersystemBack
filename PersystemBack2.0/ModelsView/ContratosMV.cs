@@ -10,5 +10,6 @@
 
         public string Servicio { get; set; } = null!;
         public string Predio { get; set; } = null!;
+
     }
 }

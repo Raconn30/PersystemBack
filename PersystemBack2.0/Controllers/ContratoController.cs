@@ -35,7 +35,7 @@ namespace PersystemBack2._0.Controllers
                         select new ContratosMV
                         {
                             Codigo= contratos.CodContrato,
-                            FechaInicio= contratos.FechaInicioContr,
+                            FechaInicio = contratos.FechaInicioContr,
                             FechaFinal = contratos.FechaFinalContr,
                             Servicio = servicios.NomSer,
                             Predio = predios.NomPredio

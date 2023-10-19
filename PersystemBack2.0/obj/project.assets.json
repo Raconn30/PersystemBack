@@ -11859,11 +11859,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\source\\repos\\Clones\\Clones de verdad\\PersystemBack3.0\\PersystemBack2.0\\PersystemBack2.0.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\source\\repos\\Clones\\Clones de verdad\\PersystemBack\\PersystemBack2.0\\PersystemBack2.0.csproj",
       "projectName": "PersystemBack2.0",
-      "projectPath": "C:\\Users\\Asus\\source\\repos\\Clones\\Clones de verdad\\PersystemBack3.0\\PersystemBack2.0\\PersystemBack2.0.csproj",
+      "projectPath": "C:\\Users\\Asus\\source\\repos\\Clones\\Clones de verdad\\PersystemBack\\PersystemBack2.0\\PersystemBack2.0.csproj",
       "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\source\\repos\\Clones\\Clones de verdad\\PersystemBack3.0\\PersystemBack2.0\\obj\\",
+      "outputPath": "C:\\Users\\Asus\\source\\repos\\Clones\\Clones de verdad\\PersystemBack\\PersystemBack2.0\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
