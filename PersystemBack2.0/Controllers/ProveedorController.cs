@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using PersystemBack2._0.Models;
+using PersystemBack2._0.ModelsView;
 
 namespace PersystemBack2._0.Controllers
 {
@@ -20,18 +22,28 @@ namespace PersystemBack2._0.Controllers
             _context = context;
         }
 
-        // GET: api/Proveedors
+        // GET: api/Proveedor
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Proveedor>>> GetProveedors()
+        public async Task<ActionResult<IEnumerable<ProovedorMV>>> GetProveedors()
         {
           if (_context.Proveedors == null)
           {
               return NotFound();
-          }
-            return await _context.Proveedors.ToListAsync();
+            }
+            var query = from proovedor in await _context.Proveedors.ToListAsync()
+                        select new ProovedorMV
+                        {
+                            Codigo=proovedor.CodProveedor,
+                            Nombre= proovedor.NomProveedor,
+                            Direccion=proovedor.DirProveedor,
+                            Telefono=proovedor.TelProveedor
+
+                        };
+            return query.ToList();
+           
         }
 
-        // GET: api/Proveedors/5
+        // GET: api/Proveedor/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Proveedor>> GetProveedor(string id)
         {
@@ -49,7 +61,7 @@ namespace PersystemBack2._0.Controllers
             return proveedor;
         }
 
-        // PUT: api/Proveedors/5
+        // PUT: api/Proveedor/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProveedor(string id, Proveedor proveedor)
@@ -80,7 +92,7 @@ namespace PersystemBack2._0.Controllers
             return NoContent();
         }
 
-        // POST: api/Proveedors
+        // POST: api/Proveedor
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Proveedor>> PostProveedor(Proveedor proveedor)
@@ -109,7 +121,7 @@ namespace PersystemBack2._0.Controllers
             return CreatedAtAction("GetProveedor", new { id = proveedor.CodProveedor }, proveedor);
         }
 
-        // DELETE: api/Proveedors/5
+        // DELETE: api/Proveedor/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProveedor(string id)
         {

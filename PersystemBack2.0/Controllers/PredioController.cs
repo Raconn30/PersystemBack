@@ -21,7 +21,7 @@ namespace PersystemBack2._0.Controllers
             _context = context;
         }
 
-        // GET: api/Predios
+        // GET: api/Predio
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PredioMV>>> GetPredios()
         {
@@ -43,9 +43,10 @@ namespace PersystemBack2._0.Controllers
 
                         };
             return query.ToList();
+
         }
 
-        // GET: api/Predios/5
+        // GET: api/Predio/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Predio>> GetPredio(string id)
         {
@@ -63,7 +64,7 @@ namespace PersystemBack2._0.Controllers
             return predio;
         }
 
-        // PUT: api/Predios/5
+        // PUT: api/Predio/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPredio(string id, Predio predio)
@@ -94,7 +95,7 @@ namespace PersystemBack2._0.Controllers
             return NoContent();
         }
 
-        // POST: api/Predios
+        // POST: api/Predio
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Predio>> PostPredio(Predio predio)
@@ -123,7 +124,7 @@ namespace PersystemBack2._0.Controllers
             return CreatedAtAction("GetPredio", new { id = predio.NitPredio }, predio);
         }
 
-        // DELETE: api/Predios/5
+        // DELETE: api/Predio/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePredio(string id)
         {

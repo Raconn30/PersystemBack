@@ -41,13 +41,13 @@ public partial class PersystemContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-8A4S6J7; Database=Persystem; Trusted_Connection=True; TrustServerCertificate=true ");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-HGR4UJM\\SQLEXPRESS; Database=Persystem; Trusted_Connection=True; TrustServerCertificate=true ");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Contrato>(entity =>
         {
-            entity.HasKey(e => e.CodContrato).HasName("PK__contrato__37C07AA4538608D7");
+            entity.HasKey(e => e.CodContrato).HasName("PK__contrato__37C07AA46654D8EC");
 
             entity.ToTable("contrato");
 
@@ -75,12 +75,10 @@ public partial class PersystemContext : DbContext
 
             entity.HasOne(d => d.CodSerNavigation).WithMany(p => p.Contratos)
                 .HasForeignKey(d => d.CodSer)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_contrato_servicio");
 
             entity.HasOne(d => d.NitPredioNavigation).WithMany(p => p.Contratos)
                 .HasForeignKey(d => d.NitPredio)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_contrato_predio");
         });
 
@@ -126,13 +124,12 @@ public partial class PersystemContext : DbContext
 
             entity.HasOne(d => d.CedulaTrabNavigation).WithMany(p => p.Logins)
                 .HasForeignKey(d => d.CedulaTrab)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_login_trabajador");
         });
 
         modelBuilder.Entity<Material>(entity =>
         {
-            entity.HasKey(e => e.CodMat).HasName("PK__material__F822F5F1E9A1090B");
+            entity.HasKey(e => e.CodMat).HasName("PK__material__F822F5F16C5FB974");
 
             entity.ToTable("material");
 
@@ -184,12 +181,10 @@ public partial class PersystemContext : DbContext
 
             entity.HasOne(d => d.CodMatNavigation).WithMany()
                 .HasForeignKey(d => d.CodMat)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("proveedor_has_material_ibfk_2");
 
             entity.HasOne(d => d.CodProveedorNavigation).WithMany()
                 .HasForeignKey(d => d.CodProveedor)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("proveedor_has_material_ibfk_1");
         });
 
@@ -249,13 +244,12 @@ public partial class PersystemContext : DbContext
 
             entity.HasOne(d => d.DocumentoRepreNavigation).WithMany(p => p.Predios)
                 .HasForeignKey(d => d.DocumentoRepre)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_predio_representante");
         });
 
         modelBuilder.Entity<Proveedor>(entity =>
         {
-            entity.HasKey(e => e.CodProveedor).HasName("PK__proveedo__D4A662EB95F3E807");
+            entity.HasKey(e => e.CodProveedor).HasName("PK__proveedo__D4A662EB0A198BFC");
 
             entity.ToTable("proveedor");
 
@@ -281,7 +275,7 @@ public partial class PersystemContext : DbContext
 
         modelBuilder.Entity<Representante>(entity =>
         {
-            entity.HasKey(e => e.DocumentoRepre).HasName("PK__represen__08E51A5F5C41A240");
+            entity.HasKey(e => e.DocumentoRepre).HasName("PK__represen__08E51A5FC780FECF");
 
             entity.ToTable("representante", tb => tb.HasTrigger("VerificarCorreo"));
 
@@ -353,13 +347,12 @@ public partial class PersystemContext : DbContext
 
             entity.HasOne(d => d.CodMatNavigation).WithMany(p => p.Servicios)
                 .HasForeignKey(d => d.CodMat)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_servicio_material");
         });
 
         modelBuilder.Entity<Trabajador>(entity =>
         {
-            entity.HasKey(e => e.CedulaTrab).HasName("PK__trabajad__90BBDBC204147A4F");
+            entity.HasKey(e => e.CedulaTrab).HasName("PK__trabajad__90BBDBC2CC62353C");
 
             entity.ToTable("trabajador", tb => tb.HasTrigger("VerificarCorreoTrabajador"));
 
@@ -395,7 +388,6 @@ public partial class PersystemContext : DbContext
 
             entity.HasOne(d => d.CodContratoNavigation).WithMany(p => p.Trabajadors)
                 .HasForeignKey(d => d.CodContrato)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_trabajador_contrato");
         });
 

@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using PersystemBack2._0.Models;
+using PersystemBack2._0.ModelsView;
 
 namespace PersystemBack2._0.Controllers
 {
@@ -20,18 +22,33 @@ namespace PersystemBack2._0.Controllers
             _context = context;
         }
 
-        // GET: api/Representantes
+        // GET: api/Representante
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Representante>>> GetRepresentantes()
+        public async Task<ActionResult<IEnumerable<RepresentanteMV>>> GetRepresentantes()
         {
           if (_context.Representantes == null)
           {
               return NotFound();
           }
-            return await _context.Representantes.ToListAsync();
+            var query = from representante in await _context.Representantes.ToListAsync()
+                        
+                        select new RepresentanteMV
+                        {
+                            Documento= representante.DocumentoRepre,
+                            Nombre= representante.NomRepre,
+                            Apellido=representante.ApellRepre,
+                            Telefono=representante.TelRepre,
+                            Correo=representante.CorreoRepre,
+                            DiaAtencion=representante.DiaAtencion,
+                            HoraAtencion=representante.HoraAtencion,
+                          
+
+                        };
+            return query.ToList();
+            
         }
 
-        // GET: api/Representantes/5
+        // GET: api/Representante/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Representante>> GetRepresentante(string id)
         {
@@ -49,7 +66,7 @@ namespace PersystemBack2._0.Controllers
             return representante;
         }
 
-        // PUT: api/Representantes/5
+        // PUT: api/Representante/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRepresentante(string id, Representante representante)
@@ -80,7 +97,7 @@ namespace PersystemBack2._0.Controllers
             return NoContent();
         }
 
-        // POST: api/Representantes
+        // POST: api/Representante
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Representante>> PostRepresentante(Representante representante)
@@ -109,7 +126,7 @@ namespace PersystemBack2._0.Controllers
             return CreatedAtAction("GetRepresentante", new { id = representante.DocumentoRepre }, representante);
         }
 
-        // DELETE: api/Representantes/5
+        // DELETE: api/Representante/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRepresentante(string id)
         {

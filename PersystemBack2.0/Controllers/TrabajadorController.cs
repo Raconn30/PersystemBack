@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PersystemBack2._0.Models;
+using PersystemBack2._0.ModelsView;
 
 namespace PersystemBack2._0.Controllers
 {
@@ -22,14 +23,31 @@ namespace PersystemBack2._0.Controllers
 
         // GET: api/Trabajador
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Trabajador>>> GetTrabajadors()
+        public async Task<ActionResult<IEnumerable<TrabajadorMV>>> GetTrabajadors()
         {
           if (_context.Trabajadors == null)
           {
               return NotFound();
-          }
-            return await _context.Trabajadors.ToListAsync();
+            }
+            var query = from trabajador in await _context.Trabajadors.ToListAsync()
+                        join Contrato in await _context.Contratos.ToListAsync() on trabajador.CodContrato equals Contrato.CodContrato
+                        //join Login in await _context.Logins.ToListAsync() on trabajador.CedulaTrab equals Login.CedulaTrab
+                        select new TrabajadorMV
+                        {
+                            Cedula=trabajador.CedulaTrab,
+                            Nombre=trabajador.NomTrab,
+                            Apellido=trabajador.ApellTrab,
+                            Telefono=trabajador.TelTrab,
+                            Direccion=trabajador.DirTrab,
+                            Correo=trabajador.CorreoTrab,
+                            Salario=trabajador.SalarioTrab,
+                            PrecioDelContrato=Contrato.PrecioContrato,
+                            // Usuario=Login.Usuario
+                        };
+            return query.ToList();
+
         }
+        
 
         // GET: api/Trabajador/5
         [HttpGet("{id}")]

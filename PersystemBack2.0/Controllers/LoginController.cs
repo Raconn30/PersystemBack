@@ -25,10 +25,10 @@ namespace PersystemBack2._0.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LoginMV>>> GetLogins()
         {
-            if (_context.Logins == null)
-            {
-                return NotFound();
-            }
+          if (_context.Logins == null)
+          {
+              return NotFound();
+          }
             var query = from login in await _context.Logins.ToListAsync()
                         join trabajador in await _context.Trabajadors.ToListAsync() on login.CedulaTrab equals trabajador.CedulaTrab
                         select new LoginMV
@@ -39,6 +39,7 @@ namespace PersystemBack2._0.Controllers
                             Trabajador = trabajador.NomTrab
                         };
             return query.ToList();
+            
         }
 
         // GET: api/Login/5
