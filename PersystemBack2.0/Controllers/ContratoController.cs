@@ -40,7 +40,8 @@ namespace PersystemBack2._0.Controllers
                             Servicio = servicios.NomSer,
                             Predio = predios.NomPredio
                         };
-           return  query.ToList();
+            return query.ToList();
+           
         }
 
         // GET: api/Contrato/5

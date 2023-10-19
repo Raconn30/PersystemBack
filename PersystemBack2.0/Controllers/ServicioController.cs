@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using PersystemBack2._0.Models;
+using PersystemBack2._0.ModelsView;
 
 namespace PersystemBack2._0.Controllers
 {
@@ -22,14 +24,29 @@ namespace PersystemBack2._0.Controllers
 
         // GET: api/Servicio
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Servicio>>> GetServicios()
+        public async Task<ActionResult<IEnumerable<ServicioMV>>> GetServicios()
         {
           if (_context.Servicios == null)
           {
               return NotFound();
-          }
-            return await _context.Servicios.ToListAsync();
+            }
+            var query = from servicio in await _context.Servicios.ToListAsync()
+                        join Material in await _context.Materials.ToListAsync() on servicio.CodMat equals Material.CodMat
+                        select new ServicioMV
+                        {
+                            Codigo=servicio.CodSer,
+                            Precio=servicio.PrecioSer,
+                            Duracion=servicio.DuracionSer,
+                            Nombre=servicio.NomSer,
+                            Tipo=servicio.TipoSer,
+                            Descripcion=servicio.DesSer,
+                            Material=Material.NomMat
+                        };
+            return query.ToList();
+
         }
+          
+        
 
         // GET: api/Servicio/5
         [HttpGet("{id}")]

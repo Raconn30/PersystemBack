@@ -21,7 +21,7 @@ namespace PersystemBack2._0.Controllers
             _context = context;
         }
 
-        // GET: api/Materials
+        // GET: api/Material
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MaterialVM>>> GetMaterials()
         {
@@ -30,7 +30,7 @@ namespace PersystemBack2._0.Controllers
               return NotFound();
           }
             var query = from material in await _context.Materials.ToListAsync()
-                        
+
                         select new MaterialVM
                         {
                             Codigo = material.CodMat,
@@ -43,9 +43,10 @@ namespace PersystemBack2._0.Controllers
                             FechaSalida = material.FechaSalida
                         };
             return query.ToList();
+           
         }
 
-        // GET: api/Materials/5
+        // GET: api/Material/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Material>> GetMaterial(string id)
         {
@@ -63,7 +64,7 @@ namespace PersystemBack2._0.Controllers
             return material;
         }
 
-        // PUT: api/Materials/5
+        // PUT: api/Material/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMaterial(string id, Material material)
@@ -94,7 +95,7 @@ namespace PersystemBack2._0.Controllers
             return NoContent();
         }
 
-        // POST: api/Materials
+        // POST: api/Material
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Material>> PostMaterial(Material material)
@@ -123,7 +124,7 @@ namespace PersystemBack2._0.Controllers
             return CreatedAtAction("GetMaterial", new { id = material.CodMat }, material);
         }
 
-        // DELETE: api/Materials/5
+        // DELETE: api/Material/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMaterial(string id)
         {
